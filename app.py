@@ -11,7 +11,7 @@ db.init_app(app)
 @app.route('/')
 def index():
     context={
-        'questions': Question.query.order_by('-create_time').all()
+        'questions': Question.query.order_by('create_time').all()
     }
     return render_template('index.html',**context)
 
@@ -103,7 +103,7 @@ def add_answer():
 def search():
     search_key = request.form.get('search_key')
     context = {
-        'questions': Question.query.filter(Question.title.contains(search_key)).order_by('-create_time').all()
+        'questions': Question.query.filter(Question.title.contains(search_key)).order_by('create_time').all()
     }
     return render_template('index.html', **context)
 
